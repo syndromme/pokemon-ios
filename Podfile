@@ -6,12 +6,23 @@ target 'pokemon-ios' do
   use_frameworks!
   
   pod 'Alamofire'
+  pod 'RxAlamofire'
   pod 'Kingfisher'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'MBProgressHUD'
   pod 'XLPagerTabStrip'
   pod 'RealmSwift'
+  
+  post_install do |installer|
+      installer.generated_projects.each do |project|
+          project.targets.each do |target|
+              target.build_configurations.each do |config|
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+              end
+          end
+      end
+  end
 
   # Pods for pokemon-ios
 
