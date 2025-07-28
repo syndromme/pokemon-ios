@@ -50,11 +50,15 @@
 		};
 		CEF7C9C72E37658D006CFF59 /* pokemon-iosTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "pokemon-iosTests";
 			sourceTree = "<group>";
 		};
 		CEF7C9D12E37658D006CFF59 /* pokemon-iosUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "pokemon-iosUITests";
 			sourceTree = "<group>";
 		};
@@ -124,8 +128,6 @@
 				CEF7C9B02E37658B006CFF59 /* pokemon-ios */,
 			);
 			name = "pokemon-ios";
-			packageProductDependencies = (
-			);
 			productName = "pokemon-ios";
 			productReference = CEF7C9AE2E37658B006CFF59 /* pokemon-ios.app */;
 			productType = "com.apple.product-type.application";
@@ -147,8 +149,6 @@
 				CEF7C9C72E37658D006CFF59 /* pokemon-iosTests */,
 			);
 			name = "pokemon-iosTests";
-			packageProductDependencies = (
-			);
 			productName = "pokemon-iosTests";
 			productReference = CEF7C9C42E37658D006CFF59 /* pokemon-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -170,8 +170,6 @@
 				CEF7C9D12E37658D006CFF59 /* pokemon-iosUITests */,
 			);
 			name = "pokemon-iosUITests";
-			packageProductDependencies = (
-			);
 			productName = "pokemon-iosUITests";
 			productReference = CEF7C9CE2E37658D006CFF59 /* pokemon-iosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
