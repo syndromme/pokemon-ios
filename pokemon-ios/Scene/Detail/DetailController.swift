@@ -135,7 +135,8 @@ extension DetailController: DetailDisplayLogic {
         abilityStackView.addArrangedSubview(label)
         
         pokemon?.stats?.forEach({ stat in
-            statStackView.addArrangedSubview(StatView(stat: stat, color: pokemon?.types?.first?.color ?? UIColor.gray))
+            statStackView.addArrangedSubview(StatView(name: stat.name, stat: stat.baseStat, progress: Float(stat.baseStat) / 255, color: pokemon?.types?.first?.color ?? UIColor.gray))
         })
+        statStackView.addArrangedSubview(StatView(name: "EXP", stat: pokemon?.baseExperience ?? 0, progress: Float(pokemon?.baseExperience ?? 0) / 1000, color: pokemon?.types?.first?.color ?? UIColor.gray))
     }
 }

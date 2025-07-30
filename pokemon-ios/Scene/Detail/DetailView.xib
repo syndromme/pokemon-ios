@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="abilityStackView" destination="7KG-6I-OuI" id="Cl9-On-2oS"/>
                 <outlet property="aboutLabel" destination="pby-Hx-FxM" id="iSf-Bj-tCt"/>
-                <outlet property="descLabel" destination="Z6G-OD-0iI" id="eHL-zn-6De"/>
                 <outlet property="heightButton" destination="vMb-oh-Pj5" id="jm9-Es-qqf"/>
                 <outlet property="previewImage" destination="JXj-kQ-uJk" id="uhK-fO-vzB"/>
                 <outlet property="statLabel" destination="GRY-MD-2N7" id="WwC-qx-QCr"/>
@@ -163,29 +162,14 @@
                                                         </view>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6G-OD-0iI">
-                                                    <rect key="frame" x="0.0" y="796" width="353" height="962"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit urna at volutpat mollis. Phasellus sit amet dui eget leo imperdiet mattis. Suspendisse iaculis pulvinar hendrerit. Praesent at mauris mi. Aliquam tristique nisi vitae est pulvinar luctus at non lacus. Integer at neque eget ligula rutrum semper ut ut nisi. Proin sodales ornare dui eu tincidunt. Vestibulum quis elementum lectus. Nulla quis blandit sapien. Vestibulum tempus dui sit amet leo convallis semper. Nulla quis sagittis neque, vitae eleifend ipsum. Aliquam at nibh tristique, lacinia ligula nec, tempus dolor. Nam dapibus libero ut ante interdum cursus. Vivamus ornare augue eu elementum dignissim.
-
-Vestibulum eu lectus purus. Curabitur vestibulum risus vitae pretium ullamcorper. Suspendisse potenti. Aliquam scelerisque fermentum libero, a gravida nibh dapibus in. In posuere laoreet cursus. Donec vel felis a justo pellentesque euismod. Nullam viverra mattis ultricies. Cras eu erat sit amet augue bibendum aliquet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas efficitur consectetur ante a accumsan. Vestibulum sed semper arcu, vel pretium dolor. Aliquam erat volutpat.
-
-Aliquam commodo molestie diam. Aenean tempus neque nisl, vel rhoncus mi convallis eu. Suspendisse congue erat nec nisi porta tincidunt. Praesent consequat neque justo, nec laoreet nulla placerat eu. Donec in dui leo. Pellentesque venenatis, diam non molestie blandit, libero ante condimentum quam, scelerisque aliquet dui sapien pellentesque ligula. Quisque vehicula sit amet sapien ut cursus. Fusce quis nisi et lacus ornare gravida ut in dui. Phasellus eleifend ipsum tellus, ac eleifend mauris vehicula quis. Maecenas rhoncus et tellus sit amet tempor. Ut placerat tortor eget turpis aliquet feugiat quis in elit. Aliquam sed enim ut lectus sollicitudin ullamcorper. Suspendisse dignissim mauris ac lacinia vehicula. Mauris et ipsum justo.
-
-Curabitur eu odio convallis augue maximus fermentum. Proin enim libero, pellentesque vitae vehicula et, hendrerit egestas massa. Vivamus elit ante, scelerisque ac metus quis, volutpat rutrum dui. In mollis dui nulla, quis posuere eros pulvinar in. Suspendisse potenti. Phasellus dignissim, nisi sit amet suscipit imperdiet, enim turpis lobortis eros, tincidunt rhoncus augue magna vitae justo. Duis id erat metus. Morbi eget orci pellentesque, mollis sapien quis, pellentesque neque. Suspendisse fermentum quis arcu eget pretium.
-
-Mauris dictum elit elementum finibus tincidunt. Morbi tempus massa nisl, eu tempor augue hendrerit vitae. Curabitur gravida, lacus ac cursus egestas, orci lorem malesuada augue, eget elementum nibh tortor non enim. Vivamus id porta leo, vel lacinia eros. Suspendisse potenti. Quisque facilisis erat ac felis interdum sollicitudin. In tempus ante quam, in auctor massa dictum at. Etiam molestie fringilla felis, id posuere sapien porta at. Aenean in felis et turpis molestie facilisis. Fusce porttitor porttitor mollis. Suspendisse et lorem in felis tristique congue. Curabitur nec ligula tincidunt, mattis urna sed, pretium tellus. Praesent sit amet dictum odio.</mutableString>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BASE STATS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRY-MD-2N7">
-                                                    <rect key="frame" x="0.0" y="1774" width="353" height="20.333333333333258"/>
+                                                    <rect key="frame" x="0.0" y="796" width="353" height="20.333333333333371"/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FH3-JG-0ED">
-                                                    <rect key="frame" x="0.0" y="1810.3333333333333" width="353" height="197.33333333333326"/>
+                                                    <rect key="frame" x="0.0" y="832.33333333333337" width="353" height="1175.333333333333"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VV0-ar-heN">
                                                             <rect key="frame" x="0.0" y="0.0" width="353" height="158"/>
