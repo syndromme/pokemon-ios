@@ -13,7 +13,11 @@ enum Dashboard {
 
     enum UseCase {
 
-        struct Request { }
+        struct Request: Codable {
+            let name: String?
+            let limit: Int = 20
+            let offset: Int?
+        }
         
         struct Response: Codable {
             let count: Int

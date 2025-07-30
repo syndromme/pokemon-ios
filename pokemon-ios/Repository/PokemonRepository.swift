@@ -15,8 +15,8 @@ class PokemonRepository {
         self.apiProvider = apiProvider
     }
 
-    func getPokemons() -> Observable<Dashboard.UseCase.Response> {
-        return apiProvider.execute(APIService.fetch(name: nil), decodeTo: Dashboard.UseCase.Response.self)
+    func getPokemons(request: Dashboard.UseCase.Request) -> Observable<Dashboard.UseCase.Response> {
+        return apiProvider.execute(APIService.fetch(name: request.name, limit: request.limit, offset: request.offset), decodeTo: Dashboard.UseCase.Response.self)
             .do(onNext: { response in
                 self.saveToCache(response.results)
                 

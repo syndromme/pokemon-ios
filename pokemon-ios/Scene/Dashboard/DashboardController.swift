@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 protocol DashboardDisplayLogic: class {
     func showProgress()
     func showError(_ message: String)
     func hideProgress()
-    func showPokemons(_ pokemons: [Pokemon])
+    func showPokemons(_ pokemons: [Pokemon], _ page: Int)
 }
 
 final class DashboardController: UIViewController {
@@ -51,18 +52,42 @@ final class DashboardController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var resultSearchController: UISearchController = {
+      let controller = UISearchController(searchResultsController: nil)
+      controller.dimsBackgroundDuringPresentation = false
+      controller.searchBar.sizeToFit()
+      return controller
+    }()
+    
     var pokemons = [Pokemon]()
+    var workItem: DispatchWorkItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showProgress()
         setupTableView()
-        interactor?.getPokemons()
+        interactor?.getPokemons(0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.es.addPullToRefresh {
+            self.interactor?.getPokemons(0)
+            self.tableView.es.stopPullToRefresh()
+        }
+        tableView.es.addInfiniteScrolling {
+            self.interactor?.getPokemons(self.pokemons.count)
+            self.tableView.es.stopLoadingMore()
+        }
+        
+        resultSearchController.searchResultsUpdater = self
+        tableView.tableHeaderView = resultSearchController.searchBar
     }
 }
 
@@ -79,7 +104,10 @@ extension DashboardController: DashboardDisplayLogic {
         hideLoading()
     }
     
-    func showPokemons(_ pokemons: [Pokemon]) {
+    func showPokemons(_ pokemons: [Pokemon], _ page: Int) {
+        if page == 0 {
+            self.pokemons.removeAll()
+        }
         self.pokemons.append(contentsOf: pokemons)
         tableView.reloadData()
     }
@@ -104,5 +132,25 @@ extension DashboardController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         interactor?.setPokemon(pokemons[indexPath.row])
         router?.routeToDetail()
+    }
+}
+
+extension DashboardController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        workItem?.cancel()
+
+        let workItem = DispatchWorkItem { [weak self] in
+            self?.pokemons.removeAll()
+            if (!(searchController.searchBar.text?.isEmpty ?? true)) {
+                self?.interactor?.getPokemon(searchController.searchBar.text ?? "")
+            } else {
+                self?.interactor?.getPokemons(0)
+            }
+            searchController.dismiss(animated: true)
+        }
+
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
+        self.workItem = workItem
     }
 }

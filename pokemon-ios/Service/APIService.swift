@@ -7,7 +7,7 @@
 import Alamofire
 
 enum APIService {
-    case fetch(name: String?)
+    case fetch(name: String?, limit: Int = 20, offset: Int?)
 }
 
 extension APIService: APITarget {
@@ -17,8 +17,11 @@ extension APIService: APITarget {
     
     var path: String {
         switch self {
-        case .fetch(let name):
-            return "pokemon" + "/\(name ?? "")"
+        case .fetch(let name, let limit, let offset):
+            if let name = name {
+                return "pokemon" + "/\(name)"
+            }
+            return "pokemon?limit=\(limit)&offset=\(offset ?? 0)"
         default:
             return ""
         }

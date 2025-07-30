@@ -11,7 +11,8 @@ import RxSwift
 final class DashboardWorker {
     private let repository = PokemonRepository()
     
-    func fetchPokemons() -> Observable<Dashboard.UseCase.Response> {
-        repository.getPokemons()
+    func fetchPokemons(_ request: Dashboard.UseCase.Request) -> Observable<Dashboard.UseCase.Response> {
+        repository.getPokemons(request: request)
+    }
     }
 }
