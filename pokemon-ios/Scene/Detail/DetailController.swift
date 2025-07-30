@@ -65,6 +65,31 @@ final class DetailController: UIViewController {
         showProgress()
         interactor?.getPokemon()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigation()
+    }
+    
+    private func setupNavigation() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        title = router?.dataStore?.pokemon?.name.uppercased()
+        navigationItem.setRightBarButton(UIBarButtonItem(title: router?.dataStore?.pokemon?.idFromURL, style: .done, target: nil, action: nil), animated: true)
+//        if #available(iOS 15.0, *) {
+//            let appearance = UINavigationBarAppearance()
+//            appearance.configureWithTransparentBackground() // Makes the background transparent
+//            // Optionally, set the tint color for items like back buttons or title
+//            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+//            navigationController?.navigationBar.standardAppearance = appearance
+//            navigationController?.navigationBar.scrollEdgeAppearance = appearance // Important for transparency when scrolling
+//        } else {
+//            // Fallback for older iOS versions
+//            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//            navigationController?.navigationBar.shadowImage = UIImage()
+//            navigationController?.navigationBar.isTranslucent = true
+//        }
+    }
 }
 
 extension DetailController: DetailDisplayLogic {

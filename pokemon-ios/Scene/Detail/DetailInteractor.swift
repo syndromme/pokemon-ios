@@ -24,7 +24,7 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore {
     var pokemon: Pokemon?
 
     func getPokemon() {
-        let request = Detail.UseCase.Request(name: pokemon?.name)
+        let request = Dashboard.UseCase.Request(name: pokemon?.name, offset: nil)
         worker?.fetchPokemon(request: request).observe(on: MainScheduler.instance).subscribe(onNext: { [weak self] response in
             guard let self = self else { return }
             

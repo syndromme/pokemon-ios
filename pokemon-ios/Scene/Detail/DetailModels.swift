@@ -11,9 +11,7 @@ enum Detail {
 
   enum UseCase {
 
-      struct Request: Codable {
-        let name: String?
-    }
+    struct Request {}
 
     struct Response { }
 
