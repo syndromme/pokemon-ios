@@ -14,6 +14,7 @@ target 'pokemon-ios' do
   pod 'XLPagerTabStrip'
   pod 'RealmSwift'
   pod 'ESPullToRefresh'
+  pod 'Wormholy', '1.7.0'
   
   post_install do |installer|
       installer.generated_projects.each do |project|
