@@ -44,6 +44,11 @@ struct Pokemon: Codable {
             return String(format: "#%03d", id ?? Int(URL(string: url ?? "")?.lastPathComponent ?? "0") ?? 0)
         }
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case baseExperience = "base_experience"
+        case id, name, url, height, weight, stats, types, abilities
+    }
 }
 
 struct Statistics: Codable {
@@ -54,6 +59,25 @@ struct Statistics: Codable {
     enum CodingKeys: String, CodingKey {
         case baseStat = "base_stat"
         case effort, stat
+    }
+    
+    var name: String {
+        get {
+            switch stat.name {
+            case "attack":
+                return "ATK"
+            case "defense":
+                return "DEF"
+            case "special-attack":
+                return "S-ATK"
+            case "special-defense":
+                return "S-DEF"
+            case "speed":
+                return "SPD"
+            default:
+                return stat.name.uppercased()
+            }
+        }
     }
 }
 

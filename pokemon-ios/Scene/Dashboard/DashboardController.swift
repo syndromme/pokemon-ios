@@ -49,12 +49,11 @@ final class DashboardController: UIViewController {
     router.dataStore = interactor
   }
     
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var resultSearchController: UISearchController = {
       let controller = UISearchController(searchResultsController: nil)
-      controller.dimsBackgroundDuringPresentation = false
+      controller.obscuresBackgroundDuringPresentation = false
       controller.searchBar.sizeToFit()
       return controller
     }()
@@ -65,29 +64,31 @@ final class DashboardController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showProgress()
-        setupTableView()
+        setupCollectionView()
         interactor?.getPokemons(0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        resultSearchController.searchResultsUpdater = self
+        navigationItem.searchController = resultSearchController
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.es.addPullToRefresh {
-            self.interactor?.getPokemons(0)
-            self.tableView.es.stopPullToRefresh()
-        }
-        tableView.es.addInfiniteScrolling {
-            self.interactor?.getPokemons(self.pokemons.count)
-            self.tableView.es.stopLoadingMore()
-        }
+    private func setupCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
-        resultSearchController.searchResultsUpdater = self
-        tableView.tableHeaderView = resultSearchController.searchBar
+        collectionView.register(UINib(nibName: "PokemonCollectionCell", bundle: nil), forCellWithReuseIdentifier: "pokemonCollectionCell")
+        
+        collectionView.es.addPullToRefresh {
+            self.interactor?.getPokemons(0)
+            self.collectionView.es.stopPullToRefresh()
+        }
+        collectionView.es.addInfiniteScrolling {
+            self.interactor?.getPokemons(self.pokemons.count)
+            self.collectionView.es.stopLoadingMore()
+        }
     }
 }
 
@@ -109,27 +110,36 @@ extension DashboardController: DashboardDisplayLogic {
             self.pokemons.removeAll()
         }
         self.pokemons.append(contentsOf: pokemons)
-        tableView.reloadData()
+        collectionView.reloadData()
     }
 }
 
-extension DashboardController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension DashboardController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pokemons.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        let pokemon = pokemons[indexPath.row]
-        cell.textLabel?.text = pokemon.name
-        cell.detailTextLabel?.text = pokemon.idFromURL
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokemonCollectionCell", for: indexPath) as! PokemonCollectionCell
+        cell.setPokemon(pokemons[indexPath.item])
         return cell
     }
 }
 
-extension DashboardController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+extension DashboardController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let layout = (collectionViewLayout as! UICollectionViewFlowLayout)
+        let paddingSpace = (2 - 1) * layout.minimumInteritemSpacing
+        let inset = layout.sectionInset.left + layout.sectionInset.right
+        let availableWidth = collectionView.bounds.width - paddingSpace - inset
+        let widthPerItem = availableWidth / 2
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+}
+
+extension DashboardController: UIColorPickerViewControllerDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         interactor?.setPokemon(pokemons[indexPath.row])
         router?.routeToDetail()
     }
