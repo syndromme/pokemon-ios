@@ -14,5 +14,8 @@ final class DashboardWorker {
     func fetchPokemons(_ request: Dashboard.UseCase.Request) -> Observable<Dashboard.UseCase.Response> {
         repository.getPokemons(request: request)
     }
+    
+    func fetchPokemon(_ request: Dashboard.UseCase.Request) -> Observable<Pokemon?> {
+        repository.getPokemon(request: request)
     }
 }

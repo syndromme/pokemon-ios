@@ -26,9 +26,9 @@ class PokemonRepository {
             }
     }
     
-    func getPokemon(request: Detail.UseCase.Request) -> Observable<Pokemon?> {
+    func getPokemon(request: Dashboard.UseCase.Request) -> Observable<Pokemon?> {
         var pokemon: Pokemon?
-        return apiProvider.execute(APIService.fetch(name: request.name), decodeTo: Pokemon?.self)
+        return apiProvider.execute(APIService.fetch(name: request.name, offset: nil), decodeTo: Pokemon?.self)
             .do(onNext: { response in
                 pokemon = response
                 self.updateCache(pokemon!)

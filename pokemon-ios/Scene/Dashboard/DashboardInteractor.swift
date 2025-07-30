@@ -10,6 +10,7 @@ import RxSwift
 
 protocol DashboardBusinessLogic: class {
     func getPokemons(_ offset: Int?)
+    func getPokemon(_ name: String?)
     func setPokemon(_ pokemon: Pokemon)
 }
 
@@ -34,6 +35,16 @@ class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore {
         }) { error in
             self.presenter?.didFail(error)
         }.disposed(by: disposeBag)
+    }
+    
+    func getPokemon(_ name: String?) {
+        worker?.fetchPokemon(Dashboard.UseCase.Request.init(name: name, offset: nil)).observe(on: MainScheduler.instance).subscribe(onNext: { [weak self] response in
+            if let pokemon = response {
+                self?.presenter?.didFetchPokemons([pokemon], 0)
+            }
+        }) { error in
+            self.presenter?.didFail(error)
+        }
     }
     
     func setPokemon(_ pokemon: Pokemon) {
