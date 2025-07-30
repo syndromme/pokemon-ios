@@ -37,7 +37,7 @@ class StatView: UIView {
         self.statLabel.text = stat.stat.name.uppercased()
         self.statLabel.textColor = color
         self.valueLabel.text = "\(stat.baseStat)"
-        self.progressView.setProgress(Float(stat.baseStat) / 100, animated: false)
+        self.progressView.setProgress(Float(stat.baseStat) / 255, animated: false)
         self.progressView.progressTintColor = color
         self.progressView.trackTintColor = color.withAlphaComponent(0.25)
     }
