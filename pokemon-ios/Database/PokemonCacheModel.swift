@@ -21,7 +21,7 @@ class PokemonCacheModel: Object {
     }
 
     func toPokemon() -> Pokemon {
-        return .init(id: id, name: name, url: url, baseExperience: baseExperience, height: height, weight: weight, stats: [])
+        return .init(id: id, name: name, url: url, baseExperience: baseExperience, height: height, weight: weight, stats: [], types: [], abilities: [])
     }
 
     static func from(pokemon: Pokemon) -> PokemonCacheModel {
@@ -52,7 +52,7 @@ class StatisticCacheModel: Object {
     @Persisted var name: String = ""
     @Persisted var url: String = ""
     
-    func toStatistic() -> Statistic {
+    func toStatistic() -> DefaultResponse {
         .init(name: name, url: url)
     }
 }

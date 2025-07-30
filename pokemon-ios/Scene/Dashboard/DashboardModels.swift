@@ -32,6 +32,8 @@ struct Pokemon: Codable {
     let height: Int?
     let weight: Int?
     let stats: [Statistics]?
+    let types: [MonsterType]?
+    let abilities: [MonsterAbility]?
     
     var idFromURL: String {
         get {
@@ -43,7 +45,7 @@ struct Pokemon: Codable {
 struct Statistics: Codable {
     let baseStat: Int
     let effort: Int
-    let stat: Statistic
+    let stat: DefaultResponse
     
     enum CodingKeys: String, CodingKey {
         case baseStat = "base_stat"
@@ -51,7 +53,66 @@ struct Statistics: Codable {
     }
 }
 
-struct Statistic: Codable {
+struct MonsterType: Codable {
+    let slot: Int
+    let type: DefaultResponse
+    
+    var color: UIColor {
+        get {
+            switch type.name {
+            case "fire":
+                return UIColor.fire
+            case "water":
+                return UIColor.water
+            case "electric":
+                return UIColor.electric
+            case "grass":
+                return UIColor.grass
+            case "ice":
+                return UIColor.ice
+            case "fighting":
+                return UIColor.fighting
+            case "poison":
+                return UIColor.poison
+            case "ground":
+                return UIColor.ground
+            case "flying":
+                return UIColor.flying
+            case "psychic":
+                return UIColor.psychic
+            case "bug":
+                return UIColor.bug
+            case "rock":
+                return UIColor.rock
+            case "ghost":
+                return UIColor.ghost
+            case "dragon":
+                return UIColor.dragon
+            case "dark":
+                return UIColor.dark
+            case "steel":
+                return UIColor.steel
+            case "fairy":
+                return UIColor.fairy
+            default:
+                return UIColor.normal
+            }
+        }
+    }
+}
+
+struct MonsterAbility: Codable {
+    let slot: Int
+    let isHidden: Bool
+    let ability: DefaultResponse
+    
+    enum CodingKeys: String, CodingKey {
+        case isHidden = "is_hidden"
+        case slot, ability
+    }
+}
+
+struct DefaultResponse: Codable {
     let name: String
     let url: String
 }
