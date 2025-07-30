@@ -32,12 +32,12 @@ class StatView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
-    convenience init(stat: Statistics, color: UIColor) {
+    convenience init(name: String, stat: Int, progress: Float, color: UIColor) {
         self.init()
-        self.statLabel.text = stat.stat.name.uppercased()
+        self.statLabel.text = name
         self.statLabel.textColor = color
-        self.valueLabel.text = "\(stat.baseStat)"
-        self.progressView.setProgress(Float(stat.baseStat) / 255, animated: false)
+        self.valueLabel.text = "\(stat)"
+        self.progressView.setProgress(progress, animated: false)
         self.progressView.progressTintColor = color
         self.progressView.trackTintColor = color.withAlphaComponent(0.25)
     }
