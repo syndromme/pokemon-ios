@@ -13,6 +13,7 @@ target 'pokemon-ios' do
   pod 'MBProgressHUD'
   pod 'XLPagerTabStrip'
   pod 'RealmSwift'
+  pod 'ESPullToRefresh'
   
   post_install do |installer|
       installer.generated_projects.each do |project|
