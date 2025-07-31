@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        let dashboardVC = DashboardController(nibName: "DashboardView", bundle: nil)
+        let dashboardVC = LoginController(nibName: "LoginView", bundle: nil)
         let nav = UINavigationController(rootViewController: dashboardVC)
         window.rootViewController = nav
         window.makeKeyAndVisible()
