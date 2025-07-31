@@ -21,7 +21,11 @@ final class LoginRouter: LoginRoutingLogic, LoginDataPassing {
   var dataStore: LoginDataStore?
 
     func routeToRegister() {
-        let destinationViewController = RegisterController(nibName: "RegisterView", bundle: nil)
-        viewController?.navigationController?.pushViewController(destinationViewController, animated: true)
+        if viewController?.navigationController?.viewControllers.contains(where: { $0 is RegisterController }) ?? false {
+            viewController?.navigationController?.popViewController(animated: true)
+        } else {
+            let destinationViewController = RegisterController(nibName: "RegisterView", bundle: nil)
+            viewController?.navigationController?.pushViewController(destinationViewController, animated: true)
+        }
     }
 }

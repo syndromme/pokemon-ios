@@ -157,11 +157,7 @@ final class LoginController: UIViewController {
         gesture.handleTapLabel { string in
             switch string {
             case "register":
-                if self.navigationController?.viewControllers.contains(where: { $0 is RegisterController }) ?? false {
-                    self.navigationController?.popViewController(animated: true)
-                } else {
-                    self.router?.routeToRegister()
-                }
+                self.router?.routeToRegister()
                 break
             default:
                 return
