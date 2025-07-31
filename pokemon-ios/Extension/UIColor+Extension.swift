@@ -1,5 +1,5 @@
 //
-//  UIColor + Extension.swift
+//  UIColor+Extension.swift
 //  pokemon-ios
 //
 //  Created by syndromme on 30/07/25.
