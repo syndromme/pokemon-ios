@@ -70,6 +70,8 @@ final class DashboardController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = "Pokédex"
+        navigationItem.largeTitleDisplayMode = .automatic
         resultSearchController.searchResultsUpdater = self
         navigationItem.searchController = resultSearchController
         navigationItem.hidesSearchBarWhenScrolling = true
