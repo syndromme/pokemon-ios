@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController" customModule="pokemon_ios" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextField" destination="h03-ip-8c3" id="0Nh-bs-9TG"/>
+                <outlet property="loginButton" destination="7pd-es-HbS" id="oCj-I4-Reg"/>
+                <outlet property="loginLabel" destination="vP5-MB-b7L" id="8kB-sS-QkZ"/>
+                <outlet property="passwordTextField" destination="Lpa-1O-XTt" id="OMC-sg-m4d"/>
+                <outlet property="view" destination="iN0-l3-epB" id="m4q-GA-041"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QNl-Ae-gK7">
+                    <rect key="frame" x="16" y="75" width="361" height="727"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKt-Lc-LxW">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="624.66666666666663"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_pokeball_color" translatesAutoresizingMaskIntoConstraints="NO" id="tgN-SG-icT">
+                                    <rect key="frame" x="90.333333333333329" y="222" width="180.33333333333337" height="180.66666666666663"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="tgN-SG-icT" secondAttribute="height" id="kRx-3E-0wT"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="tgN-SG-icT" firstAttribute="width" secondItem="pKt-Lc-LxW" secondAttribute="width" multiplier="0.5" id="f39-cn-RzC"/>
+                                <constraint firstItem="tgN-SG-icT" firstAttribute="centerY" secondItem="pKt-Lc-LxW" secondAttribute="centerY" id="fZ1-sn-ggn"/>
+                                <constraint firstItem="tgN-SG-icT" firstAttribute="centerX" secondItem="pKt-Lc-LxW" secondAttribute="centerX" id="nST-fa-6Ib"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ll-Rm-hmu">
+                            <rect key="frame" x="0.0" y="624.66666666666663" width="361" height="102.33333333333337"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-7U-S6O">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="102.33333333333333"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h03-ip-8c3" customClass="InputField" customModule="pokemon_ios" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="4.333333333333333"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lpa-1O-XTt" customClass="InputField" customModule="pokemon_ios" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="20.333333333333371" width="361" height="50"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pd-es-HbS">
+                                            <rect key="frame" x="0.0" y="86.333333333333371" width="361" height="0.0"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                            <connections>
+                                                <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="fcl-jg-Pkl"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vP5-MB-b7L">
+                                            <rect key="frame" x="0.0" y="102.33333333333337" width="361" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="g1P-7U-S6O" secondAttribute="trailing" id="TLQ-aj-dWd"/>
+                                <constraint firstAttribute="bottom" secondItem="g1P-7U-S6O" secondAttribute="bottom" id="hEI-7j-xpG"/>
+                                <constraint firstItem="g1P-7U-S6O" firstAttribute="top" secondItem="7ll-Rm-hmu" secondAttribute="top" id="lmI-xF-zcY"/>
+                                <constraint firstItem="g1P-7U-S6O" firstAttribute="leading" secondItem="7ll-Rm-hmu" secondAttribute="leading" id="pdc-Dk-P4w"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QNl-Ae-gK7" secondAttribute="trailing" constant="16" id="3sz-jA-pHe"/>
+                <constraint firstItem="QNl-Ae-gK7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="NgG-sh-bHg"/>
+                <constraint firstItem="QNl-Ae-gK7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="Vdr-Gd-JNA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QNl-Ae-gK7" secondAttribute="bottom" constant="16" id="k0h-3D-WRf"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_pokeball_color" width="170.66667175292969" height="170.66667175292969"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
