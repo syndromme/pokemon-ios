@@ -16,6 +16,7 @@ target 'pokemon-ios' do
   pod 'ESPullToRefresh'
   pod 'SkyFloatingLabelTextField'
   pod 'Sodium'
+  pod 'TPKeyboardAvoiding'
   pod 'Wormholy', '1.7.0'
   
   post_install do |installer|
