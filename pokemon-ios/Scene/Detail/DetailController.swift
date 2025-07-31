@@ -57,7 +57,6 @@ final class DetailController: UIViewController {
     @IBOutlet weak var abilityStackView: UIStackView!
     @IBOutlet weak var weightButton: UIButton!
     @IBOutlet weak var heightButton: UIButton!
-    @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var statStackView: UIStackView!
     
     override func viewDidLoad() {
