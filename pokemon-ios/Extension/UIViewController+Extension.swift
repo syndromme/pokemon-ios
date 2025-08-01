@@ -8,7 +8,7 @@
 import MBProgressHUD
 
 extension UIViewController {
-    func showLoading(message: String? = nil, isSuccess: Bool? = nil, delay: TimeInterval? = nil) {
+    func showLoading(message: String? = nil, isSuccess: Bool? = nil, delay: TimeInterval? = nil, completion: (() -> Void)? = nil) {
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.mode = .indeterminate
         if let message = message {
@@ -19,6 +19,8 @@ extension UIViewController {
         guard let delay = delay else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             self.hideLoading()
+            guard let completion = completion else { return }
+            completion()
         }
     }
     

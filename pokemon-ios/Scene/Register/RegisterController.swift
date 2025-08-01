@@ -264,9 +264,10 @@ final class RegisterController: UIViewController {
 extension RegisterController: RegisterDisplayLogic {
     func showRegisterSuccess() {
         hideLoading()
-        showLoading(message: "Register Success!!!", delay: 2)
+        showLoading(message: "register_success".localized, delay: 2) {
+            self.router?.routeToLogin()
+        }
         clearFields()
-        router?.routeToLogin()
     }
     
     func showError(_ message: String) {

@@ -181,9 +181,10 @@ final class LoginController: UIViewController {
 extension LoginController: LoginDisplayLogic {
     func showLoginSuccess(_ user: Login.UseCase.Response?) {
         hideLoading()
-        showLoading(message: "Login Success!!!", delay: 2)
+        showLoading(message: "login_success".localized, delay: 2) {
+            self.router?.routeToMainTab()
+        }
         clearFields()
-        router?.routeToMainTab()
     }
     
     func showError(_ message: String) {
