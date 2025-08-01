@@ -14,6 +14,7 @@ protocol DashboardDisplayLogic: class {
     func showError(_ message: String)
     func hideProgress()
     func showPokemons(_ pokemons: [Pokemon], _ page: Int)
+    func showPagination(_ enabled: Bool)
 }
 
 final class DashboardController: UIViewController {
@@ -62,6 +63,7 @@ final class DashboardController: UIViewController {
         setupUI()
         setupCollectionView()
         interactor?.getPokemons(0)
+        interactor?.handleConnection()
     }
     
     private func setupUI() {
@@ -74,14 +76,6 @@ final class DashboardController: UIViewController {
         
         collectionView.register(UINib(nibName: "PokemonCollectionCell", bundle: nil), forCellWithReuseIdentifier: "pokemonCollectionCell")
         
-        collectionView.es.addPullToRefresh {
-            self.interactor?.getPokemons(0)
-            self.collectionView.es.stopPullToRefresh()
-        }
-        collectionView.es.addInfiniteScrolling {
-            self.interactor?.getPokemons(self.pokemons.count)
-            self.collectionView.es.stopLoadingMore()
-        }
     }
 }
 
@@ -104,6 +98,22 @@ extension DashboardController: DashboardDisplayLogic {
         }
         self.pokemons.append(contentsOf: pokemons)
         collectionView.reloadData()
+    }
+    
+    func showPagination(_ enabled: Bool) {
+        if enabled {
+            collectionView.es.addPullToRefresh {
+                self.interactor?.getPokemons(0)
+                self.collectionView.es.stopPullToRefresh()
+            }
+            collectionView.es.addInfiniteScrolling {
+                self.interactor?.getPokemons(self.pokemons.count)
+                self.collectionView.es.stopLoadingMore()
+            }
+        } else {
+            collectionView.es.removeRefreshHeader()
+            collectionView.es.removeRefreshFooter()
+        }
     }
 }
 

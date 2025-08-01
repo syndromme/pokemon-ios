@@ -12,6 +12,7 @@ protocol DashboardBusinessLogic: class {
     func getPokemons(_ offset: Int?)
     func getPokemon(_ name: String?)
     func setPokemon(_ pokemon: Pokemon)
+    func handleConnection()
 }
 
 protocol DashboardDataStore: class {
@@ -44,10 +45,19 @@ class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore {
             }
         }) { error in
             self.presenter?.didFail(error)
-        }
+        }.disposed(by: disposeBag)
     }
     
     func setPokemon(_ pokemon: Pokemon) {
         self.pokemon = pokemon
+    }
+    
+    func handleConnection() {
+        ReachabilityService.shared.isConnected
+            .subscribe(onNext: { connected in
+                print(connected ? "🟢 Connected" : "🔴 Disconnected")
+                self.presenter?.enablePagination(connected)
+            })
+            .disposed(by: disposeBag)
     }
 }

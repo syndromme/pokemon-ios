@@ -10,6 +10,7 @@ import Foundation
 protocol DashboardPresentationLogic: class {
     func didFetchPokemons(_ pokemons: [Pokemon], _ offset: Int)
     func didFail(_ error: Error)
+    func enablePagination(_ status: Bool)
 }
 
 final class DashboardPresenter: DashboardPresentationLogic {
@@ -23,4 +24,7 @@ final class DashboardPresenter: DashboardPresentationLogic {
         viewController?.showError(error.localizedDescription)
     }
 
+    func enablePagination(_ status: Bool) {
+        viewController?.showPagination(status)
+    }
 }
