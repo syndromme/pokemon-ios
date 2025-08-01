@@ -35,6 +35,8 @@ class UserRepository {
             if let user = realm.objects(UserCacheModel.self).filter("email == %@", request.email).first {
                 if PasswordHasher.verify(request.password, matches: user.password) {
                     return .just(user.toUser())
+                } else {
+                    throw AppError.genericError(message: "Email or password is incorrect")
                 }
             }
             return .just(nil)
