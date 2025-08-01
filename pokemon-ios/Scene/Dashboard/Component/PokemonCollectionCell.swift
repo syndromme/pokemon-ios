@@ -21,6 +21,13 @@ class PokemonCollectionCell: UICollectionViewCell {
     func setPokemon(_ pokemon: Pokemon) {
         idLabel.text = pokemon.idFromURL
         nameLabel.text = pokemon.name.capitalized
-        previewImage.kf.setImage(with: URL(string: String(format: artworkURL, pokemon.id ?? Int(pokemon.url?.split(separator: "/").last ?? "") ?? 0)))
+        previewImage.kf.setImage(with: URL(string: String(format: artworkURL, pokemon.id ?? Int(pokemon.url?.split(separator: "/").last ?? "") ?? 0)), options:  ReachabilityService.shared.currentStatus() ? [] : [.onlyFromCache]) { result in
+            switch result {
+                case .success(let value):
+                    print("✅ Loaded from cache")
+                case .failure(let error):
+                    print("❌ Failed to load from cache: \(error)")
+            }
+        }
     }
 }
