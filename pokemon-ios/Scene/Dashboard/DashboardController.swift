@@ -7,6 +7,7 @@
 
 import UIKit
 import ESPullToRefresh
+import XLPagerTabStrip
 
 protocol DashboardDisplayLogic: class {
     func showProgress()
@@ -50,13 +51,7 @@ final class DashboardController: UIViewController {
   }
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    private var resultSearchController: UISearchController = {
-      let controller = UISearchController(searchResultsController: nil)
-      controller.obscuresBackgroundDuringPresentation = false
-      controller.searchBar.sizeToFit()
-      return controller
-    }()
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var pokemons = [Pokemon]()
     var workItem: DispatchWorkItem?
@@ -64,17 +59,13 @@ final class DashboardController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showProgress()
+        setupUI()
         setupCollectionView()
         interactor?.getPokemons(0)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        title = "Pokédex"
-        navigationItem.largeTitleDisplayMode = .automatic
-        resultSearchController.searchResultsUpdater = self
-        navigationItem.searchController = resultSearchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+    private func setupUI() {
+        searchBar.placeholder = "Search Pokémon"
     }
     
     private func setupCollectionView() {
@@ -100,7 +91,7 @@ extension DashboardController: DashboardDisplayLogic {
     }
     
     func showError(_ message: String) {
-        showLoading(message: message, delay: 3)
+        showLoading(message: message, isSuccess: false, delay: 3)
     }
     
     func hideProgress() {
@@ -147,22 +138,28 @@ extension DashboardController: UIColorPickerViewControllerDelegate {
     }
 }
 
-extension DashboardController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
+extension DashboardController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         workItem?.cancel()
 
         let workItem = DispatchWorkItem { [weak self] in
             self?.pokemons.removeAll()
-            if (!(searchController.searchBar.text?.isEmpty ?? true)) {
-                self?.interactor?.getPokemon(searchController.searchBar.text ?? "")
+            if (!(searchBar.text?.isEmpty ?? true)) {
+                self?.interactor?.getPokemon(searchBar.text ?? "")
             } else {
                 self?.interactor?.getPokemons(0)
             }
-            searchController.dismiss(animated: true)
+            searchBar.resignFirstResponder()
         }
 
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
         self.workItem = workItem
+    }
+}
+
+extension DashboardController: IndicatorInfoProvider {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(image: UIImage(systemName: "magnifyingglass"))
     }
 }

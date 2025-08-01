@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardController" customModule="pokemon_ios" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="CeW-Gw-2yl" id="byU-Bq-2FE"/>
+                <outlet property="searchBar" destination="nFs-vV-WTn" id="sRM-pu-RXk"/>
                 <outlet property="view" destination="iN0-l3-epB" id="IWl-qL-uYG"/>
             </connections>
         </placeholder>
@@ -22,8 +23,15 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JCF-fa-JPv">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nFs-vV-WTn">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="EJc-Mo-Km5"/>
+                            </connections>
+                        </searchBar>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CeW-Gw-2yl" customClass="TPKeyboardAvoidingCollectionView">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                            <rect key="frame" x="0.0" y="56" width="393" height="703"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="QBZ-dR-UcN">
                                 <size key="itemSize" width="128" height="128"/>
