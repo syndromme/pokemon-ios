@@ -266,10 +266,11 @@ extension RegisterController: RegisterDisplayLogic {
         hideLoading()
         showLoading(message: "Register Success!!!", delay: 2)
         clearFields()
+        router?.routeToLogin()
     }
     
     func showError(_ message: String) {
         hideLoading()
-        showLoading(message: message, delay: 2)
+        showLoading(message: message, isSuccess: false, delay: 2)
     }
 }
