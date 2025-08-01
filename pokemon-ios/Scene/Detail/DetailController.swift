@@ -110,6 +110,10 @@ extension DetailController: DetailDisplayLogic {
             navigationController?.popViewController(animated: true)
         }
         
+        if let stats = pokemon?.stats, stats.isEmpty {
+            showError("Statistics not found!")
+        }
+        
         topView.backgroundColor = pokemon?.types?.first?.color
         aboutLabel.textColor = pokemon?.types?.first?.color
         statLabel.textColor = pokemon?.types?.first?.color
