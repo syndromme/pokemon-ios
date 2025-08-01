@@ -203,6 +203,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = CEF7C9A52E37658B006CFF59;
 			minimizedProjectReferenceProxies = 1;
@@ -397,6 +398,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -453,12 +455,14 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		CEF7C9DD2E37658D006CFF59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0513C590AB6F55DB0165F9C /* Pods-pokemon-iosTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
