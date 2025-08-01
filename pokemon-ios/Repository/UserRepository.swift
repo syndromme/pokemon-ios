@@ -46,10 +46,19 @@ class UserRepository {
         }
     }
     
+    func getCurrentUser(request: Profile.UseCase.Request) -> Observable<Login.UseCase.Response?> {
+        do {
+            return .just(try getCurrentUserByID(userID: request.userID)?.toUser())
+        } catch {
+            print("❌ Failed to save image: \(error)")
+            return Observable.error(error)
+        }
+    }
+    
     func setUserProfile(request: Profile.UseCase.Request) -> Observable<Login.UseCase.Response?> {
         do {
+            if let user = try getCurrentUserByID(userID: request.userID) {
             let realm = try Realm()
-            if let user = realm.objects(UserCacheModel.self).filter("id == %@", request.userID).first {
                 try realm.write {
                     user.imageData = request.image
                 }
@@ -59,6 +68,19 @@ class UserRepository {
         } catch {
             print("❌ Failed to save image: \(error)")
             return Observable.error(error)
+        }
+    }
+    
+    private func getCurrentUserByID(userID: String) throws -> UserCacheModel? {
+        do {
+            let realm = try Realm()
+            if let objectId = try? ObjectId(string: userID), let user = realm.object(ofType: UserCacheModel.self, forPrimaryKey: objectId) {
+                return user
+            }
+            return nil
+        } catch {
+            print("❌ Failed to get user: \(error)")
+            return nil
         }
     }
 }
