@@ -43,4 +43,20 @@ class UserRepository {
             return Observable.error(error)
         }
     }
+    
+    func setUserProfile(request: Profile.UseCase.Request) -> Observable<Login.UseCase.Response?> {
+        do {
+            let realm = try Realm()
+            if let user = realm.objects(UserCacheModel.self).filter("id == %@", request.userID).first {
+                try realm.write {
+                    user.imageData = request.image
+                }
+                return .just(user.toUser())
+            }
+            return .just(nil)
+        } catch {
+            print("❌ Failed to save image: \(error)")
+            return Observable.error(error)
+        }
+    }
 }

@@ -15,8 +15,9 @@ class UserCacheModel: Object {
     @Persisted var email: String = ""
     @Persisted var phoneNumber: String = ""
     @Persisted var password: String = ""
+    @Persisted var imageData: Data?
 
     func toUser() -> Login.UseCase.Response {
-        return .init(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber)
+        return .init(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, image: imageData)
     }
 }
