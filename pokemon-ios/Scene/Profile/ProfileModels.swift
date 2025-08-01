@@ -12,7 +12,7 @@ enum Profile {
   enum UseCase {
 
       struct Request: Codable {
-          let userID: Int
+          let userID: String
           let image: Data?
       }
 

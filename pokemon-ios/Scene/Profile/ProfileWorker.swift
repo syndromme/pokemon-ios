@@ -11,6 +11,10 @@ import RxSwift
 final class ProfileWorker {
     private let repository = UserRepository()
 
+    func getProfile(request: Profile.UseCase.Request) -> Observable<Login.UseCase.Response?> {
+        repository.getCurrentUser(request: request)
+    }
+    
     func saveProfile(request: Profile.UseCase.Request) -> Observable<Login.UseCase.Response?> {
         repository.setUserProfile(request: request)
     }

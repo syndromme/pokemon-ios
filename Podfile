@@ -17,13 +17,14 @@ target 'pokemon-ios' do
   pod 'SkyFloatingLabelTextField'
   pod 'Sodium'
   pod 'TPKeyboardAvoiding'
+  pod 'YPImagePicker'
   pod 'Wormholy', '1.7.0'
   
   post_install do |installer|
       installer.generated_projects.each do |project|
           project.targets.each do |target|
               target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
               end
           end
       end

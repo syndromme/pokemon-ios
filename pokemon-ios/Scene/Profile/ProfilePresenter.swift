@@ -8,6 +8,8 @@
 import Foundation
 
 protocol ProfilePresentationLogic: class {
+    func didGetProfile(user: Login.UseCase.Response)
+    func didChangeImage(user: Login.UseCase.Response)
     func didSuccess()
     func didFail(_ error: Error)
 }
@@ -15,11 +17,20 @@ protocol ProfilePresentationLogic: class {
 final class ProfilePresenter: ProfilePresentationLogic {
 
   weak var viewController: ProfileDisplayLogic?
+    
+    func didGetProfile(user: Login.UseCase.Response) {
+        viewController?.showProfile(user: user)
+    }
+    
+    func didChangeImage(user: Login.UseCase.Response) {
+        viewController?.showImageProfile(user: user)
+    }
+    
     func didSuccess() {
         
     }
     
     func didFail(_ error: any Error) {
-        
+        viewController?.showError(error.localizedDescription)
     }
 }
