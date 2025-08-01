@@ -97,7 +97,7 @@ extension DetailController: DetailDisplayLogic {
     }
     
     func showError(_ message: String) {
-        showLoading(message: message, delay: 3)
+        showLoading(message: message, isSuccess: false, delay: 3)
     }
     
     func hideProgress() {
