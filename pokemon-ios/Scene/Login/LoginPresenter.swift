@@ -24,6 +24,10 @@ final class LoginPresenter: LoginPresentationLogic {
     }
     
     func didFail(_ error: Error) {
-        viewController?.showError(error.localizedDescription)
+        if let appError = error as? AppError {
+            viewController?.showError(appError.errorDescription ?? error.localizedDescription)
+        } else {
+            viewController?.showError(error.localizedDescription)
+        }
     }
 }

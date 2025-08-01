@@ -21,6 +21,7 @@ enum Login {
         let lastName: String
         let email: String
         let phoneNumber: String
+        let image: Data?
     }
 
     struct ViewModel { }

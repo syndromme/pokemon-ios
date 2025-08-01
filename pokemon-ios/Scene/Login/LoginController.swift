@@ -175,10 +175,11 @@ extension LoginController: LoginDisplayLogic {
         hideLoading()
         showLoading(message: "Login Success!!!", delay: 2)
         clearFields()
+        router?.routeToMainTab()
     }
     
     func showError(_ message: String) {
         hideLoading()
-        showLoading(message: message, delay: 2)
+        showLoading(message: message, isSuccess: false, delay: 2)
     }
 }

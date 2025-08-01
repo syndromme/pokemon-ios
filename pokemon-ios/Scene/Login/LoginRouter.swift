@@ -5,10 +5,12 @@
 //  Created by syndromme on 31/07/25.
 //
 
+import UIKit
 import Foundation
 
 protocol LoginRoutingLogic: class {
     func routeToRegister()
+    func routeToMainTab()
 }
 
 protocol LoginDataPassing: class {
@@ -27,5 +29,13 @@ final class LoginRouter: LoginRoutingLogic, LoginDataPassing {
             let destinationViewController = RegisterController(nibName: "RegisterView", bundle: nil)
             viewController?.navigationController?.pushViewController(destinationViewController, animated: true)
         }
+    }
+    
+    func routeToMainTab() {
+        let main = MainTab()
+        let nav = UINavigationController(rootViewController: main)
+        nav.modalPresentationStyle = .fullScreen
+        nav.modalTransitionStyle = .coverVertical
+        viewController?.navigationController?.present(nav, animated: true)
     }
 }
