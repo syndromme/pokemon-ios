@@ -9,9 +9,11 @@ import RealmSwift
 import RxSwift
 
 class UserRepository {
+    
+    private let realm = try! Realm()
+    
     func registerUser(request: Register.UseCase.Request) -> Observable<Bool> {
         do {
-            let realm = try Realm()
             let user = UserCacheModel()
             user.firstName = request.firstName
             user.lastName = request.lastName
@@ -31,7 +33,6 @@ class UserRepository {
     
     func loginUser(request: Login.UseCase.Request) -> Observable<Login.UseCase.Response?> {
         do {
-            let realm = try Realm()
             if let user = realm.objects(UserCacheModel.self).filter("email == %@", request.email).first {
                 if PasswordHasher.verify(request.password, matches: user.password) {
                     return .just(user.toUser())
@@ -50,7 +51,7 @@ class UserRepository {
         do {
             return .just(try getCurrentUserByID(userID: request.userID)?.toUser())
         } catch {
-            print("❌ Failed to save image: \(error)")
+            print("❌ Failed to load cache: \(error)")
             return Observable.error(error)
         }
     }
@@ -58,7 +59,6 @@ class UserRepository {
     func setUserProfile(request: Profile.UseCase.Request) -> Observable<Login.UseCase.Response?> {
         do {
             if let user = try getCurrentUserByID(userID: request.userID) {
-            let realm = try Realm()
                 try realm.write {
                     user.imageData = request.image
                 }
@@ -73,8 +73,8 @@ class UserRepository {
     
     private func getCurrentUserByID(userID: String) throws -> UserCacheModel? {
         do {
-            let realm = try Realm()
-            if let objectId = try? ObjectId(string: userID), let user = realm.object(ofType: UserCacheModel.self, forPrimaryKey: objectId) {
+            let objectId = try? ObjectId(string: userID)
+            if let user = realm.object(ofType: UserCacheModel.self, forPrimaryKey: objectId) {
                 return user
             }
             return nil
