@@ -18,6 +18,7 @@ target 'pokemon-ios' do
   pod 'Sodium'
   pod 'TPKeyboardAvoiding'
   pod 'YPImagePicker'
+  pod 'ReachabilitySwift'
   pod 'Wormholy', '1.7.0'
   
   post_install do |installer|
