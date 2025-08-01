@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  pokemon-ios
+
+  Created by syndromme on 02/08/25.
+  
+*/
+
+"search" = "Search";
+"data_not_found" = "Data not found!";
+"statistic_not_found" = "Statistics not found!";
+"about" = "About";
+"weight" = "Weight";
+"height" = "Height";
+"base_stat" = "Base Stat";
+"ability" = "Ability";
+"email" = "Email";
+"your_email" = "Your Email";
+"email_required" = "Email is required";
+"email_invalid" = "Invalid email format";
+"password" = "Password";
+"your_password" = "Your Password";
+"password_required" = "Password is required";
+"password_invalid_length" = "Password must be at least 6 characters long";
+"password_invalid" = "Password at least one uppercase, one lowercase, one digit, one special character";
+"confirm_password" = "Confirm Password";
+"your_confirm_password" = "Confirm Your Password";
+"confirm_password_required" = "Password is required";
+"confirm_password_invalid_length" = "Password must be at least 6 characters long";
+"confirm_password_invalid" = "Password at least one uppercase, one lowercase, one digit, one special character";
+"login" = "Login";
+"logout" = "Logout";
+"no_account" = "Don't have an account? Register.";
+"have_account" = "Already have an account? Login.";
+"register" = "Register";
+"login_success" = "Login Success!";
+"register_success" = "Register Success!";
+"first_name" = "First Name";
+"your_first_name" = "Your First Name";
+"first_name_required" = "First Name is required";
+"last_name" = "Last Name";
+"your_last_name" = "Your Last Name";
+"last_name_required" = "Last Name is required";
+"phone" = "Phone Number";
+"your_phone" = "Your Phone Number";
+"phone_required" =  "Phone Number is required";
+"phone_invalid" = "Invalid phone format";
+"profile_changed" = "Profile changed.";
+"toc" = "By registering you agree to our Terms and Privacy Policy.";
+"terms" = "Terms";
+"policy" = "Privacy Policy";

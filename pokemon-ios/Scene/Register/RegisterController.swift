@@ -79,33 +79,33 @@ final class RegisterController: UIViewController {
     }
     
     private func setupUI() {
-        firstNameTextField.textField.placeholder = "Your First Name"
-        firstNameTextField.textField.title = "First Name"
+        firstNameTextField.textField.placeholder = "your_first_name".localized
+        firstNameTextField.textField.title = "first_name".localized
         firstNameTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        lastNameTextField.textField.placeholder = "Your Last Name"
-        lastNameTextField.textField.title = "Last Name"
+        lastNameTextField.textField.placeholder = "your_last_name".localized
+        lastNameTextField.textField.title = "last_name".localized
         lastNameTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        emailTextField.textField.placeholder = "Your Email"
-        emailTextField.textField.title = "Email"
+        emailTextField.textField.placeholder = "your_email".localized
+        emailTextField.textField.title = "email".localized
         emailTextField.textField.keyboardType = .emailAddress
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        phoneTextField.textField.placeholder = "Your Phone Number"
-        phoneTextField.textField.title = "Phone Number"
+        phoneTextField.textField.placeholder = "your_phone".localized
+        phoneTextField.textField.title = "phone".localized
         phoneTextField.textField.keyboardType = .phonePad
         phoneTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        passwordTextField.textField.placeholder = "Your Password"
-        passwordTextField.textField.title = "Password"
+        passwordTextField.textField.placeholder = "your_password".localized
+        passwordTextField.textField.title = "password".localized
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        confirmPasswordTextField.textField.placeholder = "Confirm Your Password"
-        confirmPasswordTextField.textField.title = "Confirm Password"
+        confirmPasswordTextField.textField.placeholder = "your_confirm_password".localized
+        confirmPasswordTextField.textField.title = "confirm_password".localized
         confirmPasswordTextField.textField.errorLabel.numberOfLines = 0
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         
         var config = UIButton.Configuration.filled()
-        config.title = "Register"
+        config.title = "register".localized
         config.cornerStyle = .medium
         config.baseBackgroundColor = .grass
         config.baseForegroundColor = .white
@@ -120,15 +120,15 @@ final class RegisterController: UIViewController {
     }
     
     private func setupTermsAndConditions() {
-        let fullText = "By registering you agree to our Terms and Privacy Policy."
+        let fullText = "toc".localized
         let attributedString = NSMutableAttributedString(string: fullText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)])
-        let termRange = (fullText as NSString).range(of: "Terms")
+        let termRange = (fullText as NSString).range(of: "terms".localized)
         if termRange.location != NSNotFound {
             attributedString.addAttribute(.link, value: "terms", range: termRange)
             attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: termRange)
             attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: termRange)
         }
-        let policyRange = (fullText as NSString).range(of: "Privacy Policy")
+        let policyRange = (fullText as NSString).range(of: "policy".localized)
         if policyRange.location != NSNotFound {
             attributedString.addAttribute(.link, value: "policy", range: policyRange)
             attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: policyRange)
@@ -141,9 +141,9 @@ final class RegisterController: UIViewController {
     }
     
     private func setupLogin() {
-        let fullText = "Already have an account? Login."
+        let fullText = "have_account".localized
         let attributedString = NSMutableAttributedString(string: fullText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
-        let loginRange = (fullText as NSString).range(of: "Login")
+        let loginRange = (fullText as NSString).range(of: "login".localized)
         if loginRange.location != NSNotFound {
             attributedString.addAttribute(.link, value: "login", range: loginRange)
             attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: loginRange)
@@ -155,12 +155,12 @@ final class RegisterController: UIViewController {
     }
     
     private func isValid() -> Bool {
-        firstNameTextField.textField?.errorMessage = firstNameTextField.textField?.text?.isEmpty ?? true ? "First Name is required" : nil
-        lastNameTextField.textField?.errorMessage = lastNameTextField.textField?.text?.isEmpty ?? true ? "Last Name is required" : nil
-        emailTextField.textField?.errorMessage = emailTextField.textField?.text?.isEmpty ?? true ? "Email is required" : nil
-        phoneTextField.textField?.errorMessage = phoneTextField.textField?.text?.isEmpty ?? true ? "Phone Number is required" : nil
-        passwordTextField.textField?.errorMessage = passwordTextField.textField?.text?.isEmpty ?? true ? "Password is required" : nil
-        confirmPasswordTextField.textField?.errorMessage = confirmPasswordTextField.textField?.text?.isEmpty ?? true ? "Confirm Password is required" : nil
+        firstNameTextField.textField?.errorMessage = firstNameTextField.textField?.text?.isEmpty ?? true ? "first_name_required".localized : nil
+        lastNameTextField.textField?.errorMessage = lastNameTextField.textField?.text?.isEmpty ?? true ? "last_name_required".localized : nil
+        emailTextField.textField?.errorMessage = emailTextField.textField?.text?.isEmpty ?? true ? "email_required".localized : nil
+        phoneTextField.textField?.errorMessage = phoneTextField.textField?.text?.isEmpty ?? true ? "phone_required".localized : nil
+        passwordTextField.textField?.errorMessage = passwordTextField.textField?.text?.isEmpty ?? true ? "password_required".localized : nil
+        confirmPasswordTextField.textField?.errorMessage = confirmPasswordTextField.textField?.text?.isEmpty ?? true ? "confirm_password_required".localized : nil
         return firstNameTextField.textField.errorMessage == nil && lastNameTextField.textField.errorMessage == nil && emailTextField.textField.errorMessage == nil && phoneTextField.textField.errorMessage == nil && passwordTextField.textField.errorMessage == nil && confirmPasswordTextField.textField.errorMessage == nil
     }
     
@@ -193,42 +193,42 @@ final class RegisterController: UIViewController {
         let textField: SkyFloatingLabelTextField? = sender as? SkyFloatingLabelTextField
         switch textField {
         case firstNameTextField.textField:
-            textField?.errorMessage = firstNameTextField.textField?.text?.isEmpty ?? true ? "First Name is required" : nil
+            textField?.errorMessage = firstNameTextField.textField?.text?.isEmpty ?? true ? "first_name_required".localized : nil
         case lastNameTextField.textField:
-            textField?.errorMessage = lastNameTextField.textField?.text?.isEmpty ?? true ? "Last Name is required" : nil
+            textField?.errorMessage = lastNameTextField.textField?.text?.isEmpty ?? true ? "last_name_required".localized : nil
         case emailTextField.textField:
             if textField?.text?.isEmpty ?? true {
-                textField?.errorMessage = "Email is required"
+                textField?.errorMessage = "email_required".localized
             } else if !(textField?.text?.isEmail ?? true) {
-                textField?.errorMessage = "Invalid email format"
+                textField?.errorMessage = "email_invalid"
             } else {
                 textField?.errorMessage = nil
             }
         case phoneTextField.textField:
             if textField?.text?.isEmpty ?? true {
-                textField?.errorMessage = "Phone Number is required"
+                textField?.errorMessage = "phone_required".localized
             } else if !(textField?.text?.isPhone ?? true) {
-                textField?.errorMessage = "Invalid phone format"
+                textField?.errorMessage = "phone_invalid".localized
             } else {
                 textField?.errorMessage = nil
             }
         case passwordTextField.textField:
             if textField?.text?.isEmpty ?? true {
-                textField?.errorMessage = "Password is required"
+                textField?.errorMessage = "password_required".localized
             } else if textField?.text?.count ?? 0 < 6 {
-                textField?.errorMessage = "Password must be at least 6 characters long"
+                textField?.errorMessage = "password_invalid_length".localized
             } else if !(textField?.text?.isValidPassword ?? false) {
-                textField?.errorMessage = "Password at least one uppercase, one lowercase, one digit, one special character"
+                textField?.errorMessage = "password_invalid".localized
             } else {
                 textField?.errorMessage = nil
             }
         case confirmPasswordTextField.textField:
             if textField?.text?.isEmpty ?? true {
-                textField?.errorMessage = "Confirm Password is required"
+                textField?.errorMessage = "confirm_password_required".localized
             } else if textField?.text?.count ?? 0 < 6 {
-                textField?.errorMessage = "Password must be at least 6 characters long"
+                textField?.errorMessage = "confirm_password_invalid_length".localized
             } else if textField?.text != passwordTextField.textField.text {
-                textField?.errorMessage = "Passwords do not match"
+                textField?.errorMessage = "confirm_password_invalid".localized
             } else {
                 textField?.errorMessage = nil
             }

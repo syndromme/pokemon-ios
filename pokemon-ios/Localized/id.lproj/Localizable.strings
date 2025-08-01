@@ -1,0 +1,69 @@
+/* 
+  Localizable.strings
+  pokemon-ios
+
+  Created by syndromme on 02/08/25.
+  
+*/
+
+"search" = "Cari";
+"data_not_found" = "Data tidak ditemukan!";
+"statistic_not_found" = "Statistik tidak ditemukan!";
+"about" = "Tentang";
+"weight" = "Berat";
+"height" = "Tinggi";
+"base_stat" = "Statistik Dasar";
+"ability" = "Kemampuan";
+"email" = "Email";
+"your_email" = "Email Anda";
+"email_required" = "Email wajib diisi";
+"email_invalid" = "Format email tidak valid";
+"password" = "Kata Sandi";
+"your_password" = "Kata Sandi Anda";
+"password_required" = "Kata sandi wajib diisi";
+"password_invalid_length" = "Kata sandi minimal harus 6 karakter";
+"password_invalid" = "Kata sandi harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu karakter khusus";
+"confirm_password" = "Konfirmasi Kata Sandi";
+"your_confirm_password" = "Konfirmasi Kata Sandi Anda";
+"confirm_password_required" = "Konfirmasi kata sandi wajib diisi";
+"confirm_password_invalid_length" = "Konfirmasi kata sandi minimal harus 6 karakter";
+"confirm_password_invalid" = "Konfirmasi kata sandi harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu karakter khusus";
+"login" = "Masuk";
+"logout" = "Keluar";
+"no_account" = "Belum punya akun? Daftar.";
+"have_account" = "Sudah punya akun? Masuk.";
+"register" = "Daftar";
+"login_success" = "Berhasil masuk!";
+"register_success" = "Pendaftaran berhasil!";
+"first_name" = "Nama Depan";
+"your_first_name" = "Nama Depan Anda";
+"first_name_required" = "Nama depan wajib diisi";
+"last_name" = "Nama Belakang";
+"your_last_name" = "Nama Belakang Anda";
+"last_name_required" = "Nama belakang wajib diisi";
+"phone" = "Nomor Telepon";
+"your_phone" = "Nomor Telepon Anda";
+"phone_required" = "Nomor telepon wajib diisi";
+"phone_invalid" = "Format nomor telepon tidak valid";
+"profile_changed" = "Profil telah diperbarui.";
+"toc" = "Dengan mendaftar, Anda menyetujui Syarat & Kebijakan Privasi kami.";
+"terms" = "Syarat";
+"policy" = "Kebijakan Privasi";
+"fire" = "Api";
+"water" = "Air";
+"electric" = "Listrik";
+"grass" = "Tumbuhan";
+"ice" = "Es";
+"fighting" = "Petarung";
+"poison" = "Racun";
+"ground" = "Tanah";
+"flying" = "Terbang";
+"psychic" = "Psikis";
+"bug" = "Serangga";
+"rock" = "Batu";
+"ghost" = "Hantu";
+"dragon" = "Naga";
+"dark" = "Kegelapan";
+"steel" = "Baja";
+"fairy" = "Peri";
+"normal" = "Normal";

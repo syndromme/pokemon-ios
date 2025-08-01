@@ -55,7 +55,7 @@ final class ProfileController: UIViewController {
     @IBOutlet weak var detailStackView: UIStackView!
     @IBOutlet weak var logoutButton: UIButton!
     
-    private var profiles = ["First Name", "Last Name", "Email", "Phone Number"]
+    private var profiles = ["first_name", "last_name", "email", "phone"]
     private var currentUser: Login.UseCase.Response?
     private var imagePicker: YPImagePicker = {
         var config = YPImagePickerConfiguration()
@@ -108,21 +108,21 @@ final class ProfileController: UIViewController {
             var subtitle: String = ""
             switch profiles.firstIndex(of: string) {
             case 0:
-                subtitle = currentUser?.firstName ?? "No First Name"
+                subtitle = currentUser?.firstName ?? "-"
                 break
             case 1:
-                subtitle = currentUser?.lastName ?? "No Last Name"
+                subtitle = currentUser?.lastName ?? "-"
                 break
             case 2:
-                subtitle = currentUser?.email ?? "No Email"
+                subtitle = currentUser?.email ?? "-"
                 break
             case 3:
-                subtitle = currentUser?.phoneNumber ?? "No Phone Number"
+                subtitle = currentUser?.phoneNumber ?? "-"
                 break
             default:
                 break
             }
-            detailStackView.addArrangedSubview(ProfileDetailView(title: string, subtitle: subtitle, border: string != profiles.last))
+            detailStackView.addArrangedSubview(ProfileDetailView(title: string.localized, subtitle: subtitle, border: string != profiles.last))
         })
         profileImageView.image = currentUser?.image == nil ? UIImage(systemName: "person.crop.circle.fill") : UIImage(data: (currentUser?.image!)!)
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
@@ -135,7 +135,7 @@ final class ProfileController: UIViewController {
         changeProfileButton.tintColor = .gray
         
         var config = UIButton.Configuration.filled()
-        config.title = "Logout"
+        config.title = "logout".localized
         config.cornerStyle = .medium
         config.baseBackgroundColor = .red
         config.baseForegroundColor = .white
@@ -172,7 +172,7 @@ extension ProfileController: ProfileDisplayLogic {
     }
     
     func showImageProfile(user: Login.UseCase.Response) {
-        showLoading(message: "Profile changed.", isSuccess: true, delay: 2)
+        showLoading(message: "profile_changed".localized, isSuccess: true, delay: 2)
         currentUser = user
         profileImageView.image = currentUser?.image == nil ? UIImage(systemName: "person.crop.circle.fill") : UIImage(data: (currentUser?.image!)!)
     }

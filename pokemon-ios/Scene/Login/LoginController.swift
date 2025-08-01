@@ -79,18 +79,18 @@ final class LoginController: UIViewController {
     }
     
     private func setupUI() {
-        emailTextField.textField.placeholder = "Your Email"
-        emailTextField.textField.title = "Email"
+        emailTextField.textField.placeholder = "your_email".localized
+        emailTextField.textField.title = "email".localized
         emailTextField.textField.keyboardType = .emailAddress
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        passwordTextField.textField.placeholder = "Your Password"
-        passwordTextField.textField.title = "Password"
+        passwordTextField.textField.placeholder = "your_password".localized
+        passwordTextField.textField.title = "password".localized
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         
         var config = UIButton.Configuration.filled()
-        config.title = "Login"
+        config.title = "login".localized
         config.cornerStyle = .medium
         config.baseBackgroundColor = .grass
         config.baseForegroundColor = .white
@@ -105,9 +105,9 @@ final class LoginController: UIViewController {
     }
     
     private func setupRegister() {
-        let fullText = "Don't have an account? Register."
+        let fullText = "no_account".localized
         let attributedString = NSMutableAttributedString(string: fullText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
-        let registerRange = (fullText as NSString).range(of: "Register")
+        let registerRange = (fullText as NSString).range(of: "register".localized)
         if registerRange.location != NSNotFound {
             attributedString.addAttribute(.link, value: "register", range: registerRange)
             attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: registerRange)
@@ -119,8 +119,8 @@ final class LoginController: UIViewController {
     }
     
     private func isValid() -> Bool {
-        emailTextField.textField?.errorMessage = emailTextField.textField?.text?.isEmpty ?? true ? "Email is required" : nil
-        passwordTextField.textField?.errorMessage = passwordTextField.textField?.text?.isEmpty ?? true ? "Password is required" : nil
+        emailTextField.textField?.errorMessage = emailTextField.textField?.text?.isEmpty ?? true ? "email_required".localized : nil
+        passwordTextField.textField?.errorMessage = passwordTextField.textField?.text?.isEmpty ?? true ? "password_required".localized : nil
         return emailTextField.textField.errorMessage == nil && passwordTextField.textField.errorMessage == nil
     }
     
@@ -146,10 +146,12 @@ final class LoginController: UIViewController {
         let textField: SkyFloatingLabelTextField? = sender as? SkyFloatingLabelTextField
         switch textField {
         case emailTextField.textField:
-            textField?.errorMessage = !(textField?.text?.isEmail ?? true) ? "Invalid email format" : nil
+            textField?.errorMessage = !(textField?.text?.isEmail ?? true) ? "email_invalid".localized : nil
         case passwordTextField.textField:
             if textField?.text?.count ?? 0 < 6 {
-                textField?.errorMessage = "Password must be at least 6 characters long"
+                textField?.errorMessage = "password_invalid_length".localized
+            } else if !(textField?.text?.isValidPassword ?? false) {
+                textField?.errorMessage = "password_invalid".localized
             } else {
                 textField?.errorMessage = nil
             }

@@ -51,6 +51,8 @@ final class DetailController: UIViewController {
     
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var aboutLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var statLabel: UILabel!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var typesStackView: UIStackView!
@@ -61,6 +63,7 @@ final class DetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         showProgress()
         interactor?.getPokemon()
     }
@@ -89,6 +92,13 @@ final class DetailController: UIViewController {
 //            navigationController?.navigationBar.isTranslucent = true
 //        }
     }
+    
+    private func setupUI() {
+        aboutLabel.text = "about".localized
+        weightLabel.text = "weight".localized
+        heightLabel.text = "height".localized
+        statLabel.text = "base_stat".localized
+    }
 }
 
 extension DetailController: DetailDisplayLogic {
@@ -106,12 +116,12 @@ extension DetailController: DetailDisplayLogic {
     
     func showPokemon(_ pokemon: Pokemon?) {
         if pokemon == nil {
-            showError("Data not found!")
+            showError("data_not_found".localized)
             navigationController?.popViewController(animated: true)
         }
         
         if let stats = pokemon?.stats, stats.isEmpty {
-            showError("Statistics not found!")
+            showError("statistic_not_found".localized)
         }
         
         topView.backgroundColor = pokemon?.types?.first?.color
@@ -119,7 +129,7 @@ extension DetailController: DetailDisplayLogic {
         statLabel.textColor = pokemon?.types?.first?.color
         previewImage.kf.setImage(with: URL(string: String(format: artworkURL, pokemon?.id ?? 0)))
         pokemon?.types?.forEach({ type in
-            typesStackView.addArrangedSubview(CapsuleButton(title: type.type.name.capitalized, backgroundColor: type.color))
+            typesStackView.addArrangedSubview(CapsuleButton(title: type.type.name.localized.capitalized, backgroundColor: type.color))
         })
         weightButton.setTitle(String(format: "%.1f kg", Float(pokemon?.weight ?? 0)/10), for: .normal)
         heightButton.setTitle(String(format: "%.1f m", Float(pokemon?.height ?? 0)/10), for: .normal)
@@ -132,7 +142,7 @@ extension DetailController: DetailDisplayLogic {
             abilityStackView.addArrangedSubview(label)
         })
         let label = UILabel()
-        label.text = "Ability"
+        label.text = "ability".localized
         label.font = .systemFont(ofSize: 14, weight: .light)
         label.textAlignment = .center
         abilityStackView.addArrangedSubview(label)

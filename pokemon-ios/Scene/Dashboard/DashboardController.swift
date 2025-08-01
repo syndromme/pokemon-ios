@@ -67,7 +67,7 @@ final class DashboardController: UIViewController {
     }
     
     private func setupUI() {
-        searchBar.placeholder = "Search Pokémon"
+        searchBar.placeholder = "\("search".localized) Pokémon"
     }
     
     private func setupCollectionView() {

@@ -34,14 +34,22 @@
                                         <constraint firstAttribute="width" secondItem="tgN-SG-icT" secondAttribute="height" id="kRx-3E-0wT"/>
                                     </constraints>
                                 </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokédex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEc-if-5iq">
+                                    <rect key="frame" x="121" y="291" width="99.333333333333314" height="27.666666666666686"/>
+                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="23"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tgN-SG-icT" secondAttribute="bottom" constant="24" id="Dd6-r1-Ilg"/>
                                 <constraint firstItem="tgN-SG-icT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pKt-Lc-LxW" secondAttribute="top" constant="24" id="Vm0-uC-7Dx"/>
+                                <constraint firstItem="UEc-if-5iq" firstAttribute="centerX" secondItem="pKt-Lc-LxW" secondAttribute="centerX" id="WY3-Nb-HDD"/>
                                 <constraint firstItem="tgN-SG-icT" firstAttribute="width" secondItem="pKt-Lc-LxW" secondAttribute="width" multiplier="0.5" id="f39-cn-RzC"/>
                                 <constraint firstItem="tgN-SG-icT" firstAttribute="centerY" secondItem="pKt-Lc-LxW" secondAttribute="centerY" id="fZ1-sn-ggn"/>
                                 <constraint firstItem="tgN-SG-icT" firstAttribute="centerX" secondItem="pKt-Lc-LxW" secondAttribute="centerX" id="nST-fa-6Ib"/>
+                                <constraint firstItem="UEc-if-5iq" firstAttribute="top" secondItem="tgN-SG-icT" secondAttribute="bottom" constant="16" id="wrW-qw-TUi"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ll-Rm-hmu">
