@@ -10,6 +10,7 @@ import Foundation
 protocol LoginPresentationLogic: class {
     func didSuccess(_ user: Login.UseCase.Response?)
     func didFail(_ error: Error)
+    func didLoggedIn()
 }
 
 final class LoginPresenter: LoginPresentationLogic {
@@ -29,5 +30,9 @@ final class LoginPresenter: LoginPresentationLogic {
         } else {
             viewController?.showError(error.localizedDescription)
         }
+    }
+    
+    func didLoggedIn() {
+        viewController?.showDashboard()
     }
 }

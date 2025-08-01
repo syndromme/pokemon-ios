@@ -11,6 +11,7 @@ import SkyFloatingLabelTextField
 protocol LoginDisplayLogic: class {
     func showLoginSuccess(_ user: Login.UseCase.Response?)
     func showError(_ message: String)
+    func showDashboard()
 }
 
 final class LoginController: UIViewController {
@@ -65,6 +66,11 @@ final class LoginController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupRegister()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor?.checkSession()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -181,5 +187,9 @@ extension LoginController: LoginDisplayLogic {
     func showError(_ message: String) {
         hideLoading()
         showLoading(message: message, isSuccess: false, delay: 2)
+    }
+    
+    func showDashboard() {
+        router?.routeToMainTab()
     }
 }
