@@ -21,26 +21,32 @@ class PokemonRepository {
         if !reachability.currentStatus() {
             return self.loadListFromCache()
         }
-        return apiProvider.execute(APIService.fetch(name: request.name, limit: request.limit, offset: request.offset), decodeTo: Dashboard.UseCase.Response.self)
-            .do(onNext: { response in
-                self.saveToCache(response.results)
-            }).catch { error in
-                print("⚠️ API failed, falling back to cache: \(error.localizedDescription)")
-                return self.loadListFromCache()
+        
+        return apiProvider.request(APIService.fetch(name: request.name, limit: request.limit, offset: request.offset)).do(onNext: { response in
+            self.saveToCache(response.results)
+        }).catch { error in
+            print("⚠️ API failed, falling back to cache: \(error.localizedDescription)")
+            if let err = error as? AppError {
+                return Observable.error(err)
             }
+            return self.loadListFromCache()
+        }
     }
     
     func getPokemon(request: Dashboard.UseCase.Request) -> Observable<Pokemon?> {
         if !reachability.currentStatus() {
             return self.loadItemFromCache(name: request.name ?? "")
         }
-        return apiProvider.execute(APIService.fetch(name: request.name, offset: nil), decodeTo: Pokemon?.self)
-            .do(onNext: { response in
-                self.updateCache(response!)
-            }).catch { error in
-                print("⚠️ API failed, falling back to cache: \(error.localizedDescription)")
-                return self.loadItemFromCache(name: request.name ?? "")
+        return apiProvider.request(APIService.fetch(name: request.name, offset: nil)).do(onNext: { response in
+            self.updateCache(response!)
+        }).catch { error in
+            print("⚠️ API failed, falling back to cache: \(error.localizedDescription)")
+            if let err = error as? AppError {
+                return Observable.error(err)
             }
+            return self.loadItemFromCache(name: request.name ?? "")
+            
+        }
     }
 
     private func saveToCache(_ pokemons: [Pokemon]) {

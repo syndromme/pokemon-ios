@@ -10,36 +10,52 @@ import Alamofire
 import RxAlamofire
 
 protocol APIProviderProtocol {
-    func execute<T: Decodable>(_ target: APITarget, decodeTo type: T.Type) -> Observable<T>
-    func executeArray<T: Decodable>(_ target: APITarget, decodeTo type: [T].Type) -> Observable<[T]>
+    func request<T: Decodable>(_ target: APITarget) -> Observable<T>
 }
 
 class APIProvider: APIProviderProtocol {
-    func execute<T: Decodable>(_ target: APITarget, decodeTo type: T.Type) -> Observable<T> {
-        return requestData(for: target)
-            .map { data in
-                try JSONDecoder().decode(T.self, from: data)
-            }
-    }
-
-    func executeArray<T: Decodable>(_ target: APITarget, decodeTo type: [T].Type) -> Observable<[T]> {
-        return requestData(for: target)
-            .map { data in
-                try JSONDecoder().decode([T].self, from: data)
-            }
-    }
-
-    private func requestData(for target: APITarget) -> Observable<Data> {
-        let request: Observable<(HTTPURLResponse, Data)>
-
+    func request<T: Decodable>(_ target: APITarget) -> Observable<T> {
+        
+        var params: Parameters?
+        var encode: ParameterEncoding = JSONEncoding.default
+        
         switch target.task {
-        case .requestPlain:
-            request = RxAlamofire.requestData(target.method, target.url, headers: target.headers)
-
         case .requestParameters(let parameters, let encoding):
-            request = RxAlamofire.requestData(target.method, target.url, parameters: parameters, encoding: encoding, headers: target.headers)
+            params = parameters
+            encode = encoding
+            break
+        default:
+            break
         }
+        
+        return RxAlamofire.requestData(target.method,
+                                       target.url,
+                                       parameters: params,
+                                       encoding: encode,
+                                       headers: target.headers)
+            .flatMap { response, data -> Observable<T> in
+                let statusCode = response.statusCode
 
-        return request.map { (_, data) in data }
+                switch statusCode {
+                case 200..<300:
+                    break
+                case 404:
+                    return .error(AppError.serverError(code: statusCode, message: "Not found"))
+                default:
+//                    if let errorResponse = try? JSONDecoder().decode(APIErrorResponse.self, from: data) {
+//                        return .error(AppError.serverError(code: statusCode, message: errorResponse.message))
+//                    } else {
+                        return .error(AppError.serverError(code: statusCode, message: "Unknown server error"))
+//                    }
+                }
+                do {
+                    let decoded = try JSONDecoder().decode(T.self, from: data)
+                    return .just(decoded)
+                } catch {
+                    return .error(AppError.decodingError(error))
+                }
+            }
     }
+
+    
 }
