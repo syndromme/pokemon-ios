@@ -35,7 +35,8 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     }
     
     func checkSession() {
-        guard let objectIdString = UserDefaults.standard.string(forKey: "current_user_id") else { return }
-        presenter?.didLoggedIn()
+        if let _ = UserDefaults.standard.string(forKey: "current_user_id") {
+            presenter?.didLoggedIn()
+        }
     }
 }
